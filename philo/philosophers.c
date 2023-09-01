@@ -6,7 +6,7 @@
 /*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 21:47:41 by tpoungla          #+#    #+#             */
-/*   Updated: 2023/08/11 14:33:10 by tpoungla         ###   ########.fr       */
+/*   Updated: 2023/09/01 10:42:23 by tpoungla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	check_die(t_main *main)
 		if (time_diff(main->philo[i].stmeal) > \
 		main->rule.time_to_die)
 		{
+			//printf("%d DIEHERE st meal = %ld \n", i + 1, time_diff(main->philo[i].stmeal));
 			main->philo[i].alive = 0;
 			return (i + 1);
 		}

@@ -6,7 +6,7 @@
 /*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:44:02 by tpoungla          #+#    #+#             */
-/*   Updated: 2023/08/11 04:57:37 by tpoungla         ###   ########.fr       */
+/*   Updated: 2023/09/01 10:42:21 by tpoungla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	philo_eat(t_philo *philo, pthread_mutex_t *fork, t_main *main)
 	printf(FRK, MAGENTA, get_ms() - main->rule.start_time, philo->id);
 	printf(EAT, YELLOW, get_ms() - main->rule.start_time, philo->id);
 	philo->eaten++;
+	printf("%d st meal = %ld \n", philo->id, time_diff(main->philo[philo->id].stmeal));
 	philo->stmeal = get_ms();
 	time_to_action(main->rule.time_to_eat);
 	pthread_mutex_unlock(&fork[philo->right]);

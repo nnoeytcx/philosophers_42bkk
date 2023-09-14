@@ -28,37 +28,24 @@ void	free_philo(t_main *main)
 	main->fork = NULL;
 }
 
-int	check_eat(t_main *main)
+int	check_eat(t_main *main, int i)
 {
-	int	i;
-
-	i = 0;
 	if (main->rule.eat_times == -1)
 		return (0);
-	while (i < main->rule.no_of_philo)
-	{
-		if (main->philo[i].eaten < main->rule.eat_times)
-			return (0);
-		i++;
-	}
+	if (main->philo[i].eaten < main->rule.eat_times)
+		return (0);
 	return (1);
 }
 
-int	check_die(t_main *main)
+int	check_die(t_main *main, int i)
 {
-	int	i;
 
-	i = 0;
-	while (i < main->rule.no_of_philo)
-	{
-		if (time_diff(main->philo[i].stmeal) > \
+	if (time_diff(main->philo[i].stmeal) > \
 		main->rule.time_to_die)
-		{
-			//printf("%d DIEHERE st meal = %ld \n", i + 1, time_diff(main->philo[i].stmeal));
-			main->philo[i].alive = 0;
-			return (i + 1);
-		}
-		i++;
+	{
+		printf("%d DIEHERE st meal = %ld \n", i + 1, time_diff(main->philo[i].stmeal));
+		main->philo[i].alive = 0;
+		return (i + 1);
 	}
 	return (0);
 }

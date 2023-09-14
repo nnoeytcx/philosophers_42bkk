@@ -67,8 +67,8 @@ typedef struct s_main
 # define INVL_ARG "invalid arguments\n"
 # define WRG_NUM_ARG "wrong number of arguments\n"
 
-int				check_eat(t_main *main);
-int				check_die(t_main *main);
+int				check_eat(t_main *main, int i);
+int				check_die(t_main *main, int i);
 
 //tools1.c
 int				ft_strlen(const char *s);

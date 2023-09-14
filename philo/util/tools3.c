@@ -65,10 +65,10 @@ int	check_tab(char **tab)
 
 char	**check_args(int argc, char *argv[])
 {
-	int		i;
+	//int		i;
 	char	**tab;
 
-	i = 0;
+	//i = 0;
 	if (argc == 1)
 	{
 		printf(ERR);

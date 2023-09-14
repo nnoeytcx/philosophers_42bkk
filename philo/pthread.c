@@ -27,11 +27,13 @@ void	philo_eat(t_philo *philo, pthread_mutex_t *fork, t_main *main)
 	printf(FRK, MAGENTA, get_ms() - main->rule.start_time, philo->id);
 	printf(EAT, YELLOW, get_ms() - main->rule.start_time, philo->id);
 	philo->eaten++;
-	printf("%d st meal = %ld \n", philo->id, time_diff(main->philo[philo->id].stmeal));
+	//printf("%d st meal = %ld \n", philo->id, time_diff(main->philo[philo->id].stmeal));
 	philo->stmeal = get_ms();
 	time_to_action(main->rule.time_to_eat);
 	pthread_mutex_unlock(&fork[philo->right]);
 	pthread_mutex_unlock(&fork[philo->left]);
+	//printf("%s------------------------------> %d unlock fork\n",RED , philo->id);
+	//printf("%s------------------------------> %d unlock fork\n",RED , philo->id);
 }
 
 void	*routine(void *arg)
@@ -81,9 +83,9 @@ void	threading(t_main *main)
 	i = 0;
 	while (main->rule.state)
 	{
-		if (main->rule.eat_times != -1 && check_eat(main))
+		if (main->rule.eat_times != -1 && check_eat(main, i))
 			break ;
-		if (check_die(main) != 0)
+		if (check_die(main, i) != 0)
 		{
 			printf(DIE, GRAY, get_ms() - main->rule.start_time, i + 1);
 			break ;

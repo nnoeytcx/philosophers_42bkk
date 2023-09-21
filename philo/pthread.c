@@ -51,13 +51,15 @@ void	*routine(void *arg)
 
 int	ft_strtheard(t_main *main)
 {
-	int	i;
+	int		i;
+	long	time;
 
 	i = 0;
+	time = get_ms();
 	while (i < main->rule.no_of_philo)
 	{
 		main->no_philo = i;
-		main->philo[i].start_time = get_ms();
+		main->philo[i].start_time = time;
 		if (pthread_create(&main->philo[i].th, NULL, &routine, main))
 			return (0);
 		if (pthread_detach(main->philo[i].th))
@@ -81,11 +83,15 @@ void	threading(t_main *main)
 	while (main->rule.state)
 	{
 		if (main->rule.eat_times != -1 && check_eat(main))
-			break ;
+		{
+			main->rule.state = 0;
+			return ;
+		}
 		if (check_die(main, i) != 0)
 		{
 			printf(DIE, GRAY, get_ms() - main->philo[i].start_time, i + 1);
-			break ;
+			main->rule.state = 0;
+			return ;
 		}
 		usleep(10);
 		i++;

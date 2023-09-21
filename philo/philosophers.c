@@ -6,7 +6,7 @@
 /*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 21:47:41 by tpoungla          #+#    #+#             */
-/*   Updated: 2023/09/01 10:42:23 by tpoungla         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:35:15 by tpoungla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,27 @@ void	free_philo(t_main *main)
 	main->fork = NULL;
 }
 
-int	check_eat(t_main *main, int i)
+int	check_eat(t_main *main)
 {
+	int	i;
+
+	i = 0;
 	if (main->rule.eat_times == -1)
 		return (0);
-	if (main->philo[i].eaten < main->rule.eat_times)
-		return (0);
+	while (i < main->rule.no_of_philo)
+	{
+		if (main->philo[i].eaten < main->rule.eat_times)
+			return (0);
+		i++;
+	}
 	return (1);
 }
 
 int	check_die(t_main *main, int i)
 {
-
 	if (time_diff(main->philo[i].start_meal) > \
 		main->rule.time_to_die)
 	{
-		printf("%d DIEHERE st meal = %ld \n", i + 1, time_diff(main->philo[i].start_meal));
 		main->philo[i].alive = 0;
 		return (i + 1);
 	}

@@ -6,7 +6,7 @@
 /*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:44:02 by tpoungla          #+#    #+#             */
-/*   Updated: 2023/09/01 10:42:21 by tpoungla         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:35:12 by tpoungla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,10 @@ void	philo_eat(t_philo *philo, pthread_mutex_t *fork, t_main *main)
 	printf(FRK, MAGENTA, time_diff(philo->start_time), philo->id);
 	printf(EAT, YELLOW, time_diff(philo->start_time), philo->id);
 	philo->eaten++;
-	//printf("%d st meal = %ld \n", philo->id, time_diff(main->philo[philo->id].stmeal));
 	philo->start_meal = get_ms();
 	time_to_action(main->rule.time_to_eat);
 	pthread_mutex_unlock(&fork[philo->right]);
 	pthread_mutex_unlock(&fork[philo->left]);
-	//printf("%s------------------------------> %d unlock fork\n",RED , philo->id);
-	//printf("%s------------------------------> %d unlock fork\n",RED , philo->id);
 }
 
 void	*routine(void *arg)
@@ -60,7 +57,6 @@ int	ft_strtheard(t_main *main)
 	while (i < main->rule.no_of_philo)
 	{
 		main->no_philo = i;
-		//starttime
 		main->philo[i].start_time = get_ms();
 		if (pthread_create(&main->philo[i].th, NULL, &routine, main))
 			return (0);
@@ -84,7 +80,7 @@ void	threading(t_main *main)
 	i = 0;
 	while (main->rule.state)
 	{
-		if (main->rule.eat_times != -1 && check_eat(main, i))
+		if (main->rule.eat_times != -1 && check_eat(main))
 			break ;
 		if (check_die(main, i) != 0)
 		{

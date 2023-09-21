@@ -6,7 +6,7 @@
 /*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 21:47:47 by tpoungla          #+#    #+#             */
-/*   Updated: 2023/08/31 21:12:08 by tpoungla         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:35:23 by tpoungla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_main
 # define INVL_ARG "invalid arguments\n"
 # define WRG_NUM_ARG "wrong number of arguments\n"
 
-int				check_eat(t_main *main, int i);
+int				check_eat(t_main *main);
 int				check_die(t_main *main, int i);
 
 //tools1.c

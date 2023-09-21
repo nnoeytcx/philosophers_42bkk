@@ -6,13 +6,13 @@
 #    By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/22 21:47:50 by tpoungla          #+#    #+#              #
-#    Updated: 2023/08/09 21:12:51 by tpoungla         ###   ########.fr        #
+#    Updated: 2023/09/21 15:34:16 by tpoungla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-//CFLAGS = -Wall -Wextra -Werror -g -pthread -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -pthread -fsanitize=address
 
 CC = gcc
 

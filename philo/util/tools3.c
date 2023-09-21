@@ -6,7 +6,7 @@
 /*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:43:21 by tpoungla          #+#    #+#             */
-/*   Updated: 2023/08/05 23:47:41 by tpoungla         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:34:42 by tpoungla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,8 @@ int	check_tab(char **tab)
 
 char	**check_args(int argc, char *argv[])
 {
-	//int		i;
 	char	**tab;
 
-	//i = 0;
 	if (argc == 1)
 	{
 		printf(ERR);

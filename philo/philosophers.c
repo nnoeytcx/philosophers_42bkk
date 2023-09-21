@@ -40,10 +40,10 @@ int	check_eat(t_main *main, int i)
 int	check_die(t_main *main, int i)
 {
 
-	if (time_diff(main->philo[i].stmeal) > \
+	if (time_diff(main->philo[i].start_meal) > \
 		main->rule.time_to_die)
 	{
-		printf("%d DIEHERE st meal = %ld \n", i + 1, time_diff(main->philo[i].stmeal));
+		printf("%d DIEHERE st meal = %ld \n", i + 1, time_diff(main->philo[i].start_meal));
 		main->philo[i].alive = 0;
 		return (i + 1);
 	}

@@ -14,21 +14,21 @@
 
 void	sleep_think(t_philo *philo, t_main *main)
 {
-	printf(SLEEP, CYAN, get_ms() - main->rule.start_time, philo->id);
+	printf(SLEEP, CYAN, time_diff(philo->start_time), philo->id);
 	time_to_action(main->rule.time_to_sleep);
-	printf(THK, GREEN, get_ms() - main->rule.start_time, philo->id);
+	printf(THK, GREEN, time_diff(philo->start_time), philo->id);
 }
 
 void	philo_eat(t_philo *philo, pthread_mutex_t *fork, t_main *main)
 {
 	pthread_mutex_lock(&fork[philo->right]);
-	printf(FRK, MAGENTA, get_ms() - main->rule.start_time, philo->id);
+	printf(FRK, MAGENTA, time_diff(philo->start_time), philo->id);
 	pthread_mutex_lock(&fork[philo->left]);
-	printf(FRK, MAGENTA, get_ms() - main->rule.start_time, philo->id);
-	printf(EAT, YELLOW, get_ms() - main->rule.start_time, philo->id);
+	printf(FRK, MAGENTA, time_diff(philo->start_time), philo->id);
+	printf(EAT, YELLOW, time_diff(philo->start_time), philo->id);
 	philo->eaten++;
 	//printf("%d st meal = %ld \n", philo->id, time_diff(main->philo[philo->id].stmeal));
-	philo->stmeal = get_ms();
+	philo->start_meal = get_ms();
 	time_to_action(main->rule.time_to_eat);
 	pthread_mutex_unlock(&fork[philo->right]);
 	pthread_mutex_unlock(&fork[philo->left]);
@@ -43,7 +43,7 @@ void	*routine(void *arg)
 
 	main = (t_main *)arg;
 	i = main->no_philo;
-	main->philo[i].stmeal = main->rule.start_time;
+	main->philo[i].start_meal = main->philo[i].start_time;
 	while (main->rule.state)
 	{
 		philo_eat(&main->philo[i], main->fork, main);
@@ -57,10 +57,11 @@ int	ft_strtheard(t_main *main)
 	int	i;
 
 	i = 0;
-	main->rule.start_time = get_ms();
 	while (i < main->rule.no_of_philo)
 	{
 		main->no_philo = i;
+		//starttime
+		main->philo[i].start_time = get_ms();
 		if (pthread_create(&main->philo[i].th, NULL, &routine, main))
 			return (0);
 		if (pthread_detach(main->philo[i].th))
@@ -87,7 +88,7 @@ void	threading(t_main *main)
 			break ;
 		if (check_die(main, i) != 0)
 		{
-			printf(DIE, GRAY, get_ms() - main->rule.start_time, i + 1);
+			printf(DIE, GRAY, get_ms() - main->philo[i].start_time, i + 1);
 			break ;
 		}
 		usleep(10);

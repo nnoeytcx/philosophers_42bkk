@@ -27,7 +27,6 @@ typedef struct s_rule
 	long	time_to_eat;
 	long	time_to_sleep;
 	int		eat_times;
-	long	start_time;
 	int		state;
 }	t_rule;
 typedef struct s_philo
@@ -38,7 +37,8 @@ typedef struct s_philo
 	int				right;
 	int				eaten;
 	int				alive;
-	long			stmeal;
+	long			start_meal;
+	long			start_time;
 }	t_philo;
 typedef struct s_main
 {

@@ -6,7 +6,7 @@
 /*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:59:34 by tpoungla          #+#    #+#             */
-/*   Updated: 2023/09/01 10:43:19 by tpoungla         ###   ########.fr       */
+/*   Updated: 2023/09/22 16:46:45 by tpoungla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ t_philo	*ft_initphilo(t_rule *rule)
 		philo[i].left = (i + 1) % rule->no_of_philo;
 		philo[i].eaten = 0;
 		philo[i].alive = 1;
+		philo[i].start_meal = 0;
+		philo[i].start_time = 0;
+		philo[i].th = NULL;
 		i++;
 	}
 	return (philo);
@@ -69,10 +72,22 @@ int	ft_init(t_main *main, char **tab)
 	ft_initrule(&main->rule, tab);
 	main->philo = ft_initphilo(&main->rule);
 	if (!main->philo)
+	{
+		free(main->philo);
+		main->philo = NULL;
+		free_tab(tab);
 		return (0);
+	}
 	main->fork = ft_initfork(main->rule.no_of_philo);
 	if (!main->fork)
+	{
+		free(main->philo);
+		free(main->fork);
+		main->philo = NULL;
+		main->fork = NULL;
+		free_tab(tab);
 		return (0);
+	}
 	free_tab(tab);
 	return (1);
 }

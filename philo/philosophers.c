@@ -6,7 +6,7 @@
 /*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 21:47:41 by tpoungla          #+#    #+#             */
-/*   Updated: 2023/09/21 18:35:15 by tpoungla         ###   ########.fr       */
+/*   Updated: 2023/09/23 04:29:20 by tpoungla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ int	check_eat(t_main *main)
 	return (1);
 }
 
+int	philo_error(t_main *main)
+{
+	if (main)
+		free_philo(main);
+	printf("ERROR\n");
+	return (0);
+}
+
 int	check_die(t_main *main, int i)
 {
 	if (time_diff(main->philo[i].start_meal) > \
@@ -72,8 +80,12 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	else
-		ft_init(&main, tab);
-	ft_strtheard(&main);
+	{
+		if (!ft_init(&main, tab))
+			return (philo_error(NULL));
+	}
+	if (!ft_strtheard(&main))
+		return (philo_error(&main));
 	threading(&main);
 	free_philo(&main);
 }

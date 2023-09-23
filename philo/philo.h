@@ -6,7 +6,7 @@
 /*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 21:47:47 by tpoungla          #+#    #+#             */
-/*   Updated: 2023/09/21 18:35:23 by tpoungla         ###   ########.fr       */
+/*   Updated: 2023/09/23 11:46:43 by tpoungla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ int				ft_init(t_main *main, char **tab);
 
 //pthread.c
 void			sleep_think(t_philo *philo, t_main *main);
-void			philo_eat(t_philo *philo, pthread_mutex_t *fork, t_main *main);
-void			*routine(void *arg);
+void			philo_eat1(t_philo *philo, pthread_mutex_t *fork, t_main *main);
+void			philo_eat2(t_philo *philo, pthread_mutex_t *fork, t_main *main);
 int				ft_strtheard(t_main *main);
 void			threading(t_main *main);
 
@@ -114,5 +114,6 @@ void			threading(t_main *main);
 long			time_diff(long time);
 long			get_ms(void);
 void			time_to_action(long time_action);
+void			*routine(void *arg);
 
 #endif

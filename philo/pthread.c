@@ -6,7 +6,7 @@
 /*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:44:02 by tpoungla          #+#    #+#             */
-/*   Updated: 2023/09/23 05:23:41 by tpoungla         ###   ########.fr       */
+/*   Updated: 2023/09/23 11:46:33 by tpoungla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	sleep_think(t_philo *philo, t_main *main)
 	printf(THK, GREEN, time_diff(philo->start_time), philo->id);
 }
 
-void	philo_eat(t_philo *philo, pthread_mutex_t *fork, t_main *main)
+void	philo_eat1(t_philo *philo, pthread_mutex_t *fork, t_main *main)
 {
 	if (!main->rule.state)
 		return ;
@@ -42,6 +42,10 @@ void	philo_eat(t_philo *philo, pthread_mutex_t *fork, t_main *main)
 	if (!main->rule.state)
 		return ;
 	printf(EAT, YELLOW, time_diff(philo->start_time), philo->id);
+}
+
+void	philo_eat2(t_philo *philo, pthread_mutex_t *fork, t_main *main)
+{
 	if (!main->rule.state)
 		return ;
 	philo->eaten++;
@@ -57,22 +61,6 @@ void	philo_eat(t_philo *philo, pthread_mutex_t *fork, t_main *main)
 	if (!main->rule.state)
 		return ;
 	pthread_mutex_unlock(&fork[philo->left]);
-}
-
-void	*routine(void *arg)
-{
-	t_main	*main;
-	int		i;
-
-	main = (t_main *)arg;
-	i = main->no_philo;
-	main->philo[i].start_meal = main->philo[i].start_time;
-	while (main->rule.state)
-	{
-		philo_eat(&main->philo[i], main->fork, main);
-		sleep_think(&main->philo[i], main);
-	}
-	return (NULL);
 }
 
 int	ft_strtheard(t_main *main)
@@ -119,7 +107,6 @@ void	threading(t_main *main)
 			main->rule.state = 0;
 			return ;
 		}
-		//usleep(10);
 		i++;
 		i = i % main->rule.no_of_philo;
 	}

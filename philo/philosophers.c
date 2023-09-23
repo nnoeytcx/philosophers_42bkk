@@ -6,7 +6,7 @@
 /*   By: tpoungla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 21:47:41 by tpoungla          #+#    #+#             */
-/*   Updated: 2023/09/23 04:29:20 by tpoungla         ###   ########.fr       */
+/*   Updated: 2023/09/23 11:31:45 by tpoungla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ int	main(int argc, char *argv[])
 	if (!ft_strtheard(&main))
 		return (philo_error(&main));
 	threading(&main);
+	usleep(50);
 	free_philo(&main);
 }
